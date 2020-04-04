@@ -1,0 +1,25 @@
+.table-section {
+  width: 100%;
+  overflow: auto;
+}
+
+.table-main {
+  width: 100%;
+  min-width: 1200px;
+
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table-main th,
+.table-main td {
+  border: 1px solid var(--color-gray-0);
+}
+
+.table-main th > span {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
