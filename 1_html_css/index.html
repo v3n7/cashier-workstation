@@ -1,92 +1,108 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>АРМ Кассира</title>
 
-    <link rel="stylesheet" href="./css/reset.css" />
-    <link rel="stylesheet" href="./css/vars.css" />
-    <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/table.css" />
-  </head>
-  <body>
-    <div class="container container--fluid-column">
-      <header class="header">
-        <div class="header-left-container">
-          <input type="text" class="search-input" />
-          <div class="sum-container">
-            <div class="sum-info">
-              <div class="sum-info__label">Сумма к оплате</div>
-              <div class="sum-info__value">345.60</div>
-            </div>
-            <div class="sum-info">
-              <div class="sum-info__label">Получено</div>
-              <div class="sum-info__value">0.00</div>
-            </div>
-            <div class="sum-info sum-info--attention">
-              <div class="sum-info__label">Сдача</div>
-              <div class="sum-info__value">0.00</div>
-            </div>
-            <div class="sum-info">
-              <div class="sum-info__label">Бонус</div>
-              <div class="sum-info__value">0.00</div>
-            </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>АРМ Кассира</title>
+
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="./css/vars.css" />
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/table.css" />
+</head>
+
+<body>
+  <div class="container container--fluid-column">
+    <header class="header">
+      <div class="header-left-container">
+        <input type="text" class="search-input" />
+        <div class="sum-container">
+          <div class="sum-info">
+            <div class="sum-info__label">Сумма к оплате</div>
+            <div class="sum-info__value">345.60</div>
+          </div>
+          <div class="sum-info">
+            <div class="sum-info__label">Получено</div>
+            <div class="sum-info__value">0.00</div>
+          </div>
+          <div class="sum-info sum-info--attention">
+            <div class="sum-info__label">Сдача</div>
+            <div class="sum-info__value">0.00</div>
+          </div>
+          <div class="sum-info">
+            <div class="sum-info__label">Бонус</div>
+            <div class="sum-info__value">0.00</div>
           </div>
         </div>
-        <div class="statuses">
-          <div class="status-info status-info--active">подключен</div>
-          <div class="status-info">робот подключен</div>
-          <div class="status-info">офд: все документы отправлены</div>
+      </div>
+      <div class="statuses">
+        <div class="status-info status-info--active">подключен</div>
+        <div class="status-info">робот подключен</div>
+        <div class="status-info">офд: все документы отправлены</div>
+      </div>
+      <div class="header-user">
+        <div class="header-user__name">Ф ДАЛИМОВА В. В.</div>
+        <div class="header-user__bonuses">Кошелек: 0.00</div>
+      </div>
+    </header>
+    <main class="main">
+      <section class="table-section table-products">
+        <table class="table-main">
+          <thead>
+            <tr>
+              <th></th>
+              <th><span>Наименование</span></th>
+              <th><span>Единица измерения</span></th>
+              <th><span>Кол-во</span></th>
+              <th><span>Цена</span></th>
+              <th><span>Сумма</span></th>
+              <th><span>ПКУ</span></th>
+              <th><span>Доступно</span></th>
+              <th><span>Место хранения</span></th>
+              <th><span>Склад</span></th>
+              <th><span>Дисконт</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Нормофлорин</td>
+              <td>1/1</td>
+              <td>1.000</td>
+              <td>0</td>
+              <td>0</td>
+              <td><input type="checkbox" checked="checked" /></td>
+              <td>5.000</td>
+              <td></td>
+              <td>777</td>
+              <td>Весна</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="table-products-summary">
+        <div class="summary-container">
+          <div class="table-summary positions-quantuty">
+            <div class="table-summary__label">Позиций:</div>
+            <div class="table-summary__value">1</div>
+          </div>
+          <div class="table-summary quantity">
+            <div class="table-summary__label">Единиц:</div>
+            <div class="table-summary__value">1</div>
+          </div>
+          <div class="table-summary discount">
+            <div class="table-summary__label">Сумма скидки:</div>
+            <div class="table-summary__value">86.40</div>
+          </div>
         </div>
-        <div class="header-user">
-          <div class="header-user__name">Ф ДАЛИМОВА В. В.</div>
-          <div class="header-user__bonuses">Кошелек: 0.00</div>
-        </div>
-      </header>
-      <main class="main">
-        <section class="table-section table-products">
-          <table class="table-main">
-            <thead>
-              <tr>
-                <th></th>
-                <th><span>Наименование</span></th>
-                <th><span>Единица измерения</span></th>
-                <th><span>Кол-во</span></th>
-                <th><span>Цена</span></th>
-                <th><span>Сумма</span></th>
-                <th><span>ПКУ</span></th>
-                <th><span>Доступно</span></th>
-                <th><span>Место хранения</span></th>
-                <th><span>Склад</span></th>
-                <th><span>Дисконт</span></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Нормофлорин</td>
-                <td>1/1</td>
-                <td>1.000</td>
-                <td>0</td>
-                <td>0</td>
-                <td><input type="checkbox" checked="checked" /></td>
-                <td>5.000</td>
-                <td></td>
-                <td>777</td>
-                <td>Весна</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-        <section class="table-products-summary">
+      </section>
+      <section class="table-bonuses">
+        <span>Информация о скидках</span>
+      </section>
+    </main>
+    <footer></footer>
+  </div>
+</body>
 
-        </section>
-        <section class="table-bonuses">
-            <span>Информация о скидках</span>
-        </section>
-      </main>
-      <footer></footer>
-    </div>
-  </body>
 </html>

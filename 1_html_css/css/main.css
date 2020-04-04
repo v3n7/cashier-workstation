@@ -140,3 +140,19 @@ body {
   flex: 1;
   padding: var(--padding-md);
 }
+
+/**
+* table-products-summary
+*/
+.table-products-summary {
+  width: 1600px;
+  text-transform: uppercase;
+}
+
+.table-summary {
+  float: left;
+}
+
+.table-summary__value {
+  text-align: right;
+}
