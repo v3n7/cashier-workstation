@@ -1,0 +1,24 @@
+.additional-button__label {
+    text-transform: uppercase;
+}
+
+.status-string {
+    display: inline-flex;
+    flex-direction: row;
+    max-width: 1600px;
+}
+
+.status-string__user {
+    padding: 0px 1px;
+    margin-left: 1px;
+    margin-right: 1px;
+    border: 1px solid grey;
+}
+
+.status-string__service {
+    padding: 0px 1px;
+    margin-left: 1px;
+    margin-right: 1px;
+    border: 1px solid grey;
+    width: 100vw;
+}

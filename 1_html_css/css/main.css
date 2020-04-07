@@ -151,8 +151,16 @@ body {
 
 .table-summary {
   float: left;
+  width: max-content;
 }
 
+.table-summary__label {
+  float: left;
+} 
+
 .table-summary__value {
+  float: left;
   text-align: right;
+  margin-left: 1em;
+  margin-right: 1em;
 }
