@@ -1,3 +1,11 @@
+.additional-button {
+    font-weight: bold;
+}
+
+.additional-button__hotkey {
+    font-size: 11pt;
+}
+
 .additional-button__label {
     text-transform: uppercase;
 }
@@ -6,6 +14,9 @@
     display: inline-flex;
     flex-direction: row;
     max-width: 1600px;
+    width: auto;
+
+    font-size: 10pt;
 }
 
 .status-string__user {
@@ -13,6 +24,7 @@
     margin-left: 1px;
     margin-right: 1px;
     border: 1px solid grey;
+    width: fit-content;
 }
 
 .status-string__service {
@@ -20,5 +32,5 @@
     margin-left: 1px;
     margin-right: 1px;
     border: 1px solid grey;
-    width: 100vw;
+    width: inherit;
 }

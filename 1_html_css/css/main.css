@@ -141,6 +141,7 @@ body {
   padding: var(--padding-md);
 }
 
+
 /**
 * table-products-summary
 */
@@ -163,4 +164,8 @@ body {
   text-align: right;
   margin-left: 1em;
   margin-right: 1em;
+}
+
+.table-bonuses {
+  float: none;
 }
