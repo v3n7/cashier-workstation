@@ -122,14 +122,7 @@ async function onSearch(text) {
       li.innerText = item.name;
       ul.appendChild(li);
 
-      li.addEventListener("click", () => {
-        insertPosition({ name: li.textContent});
-
-        let input = document.getElementsByClassName("search-input__input");
-        input[0].value = "";
-        modal[0].classList.remove("search-input__modal--show");
-        modal[0].innerHTML = "";
-      });
+      li.addEventListener("click", insertFoundPosition, li.textContent, modal);
     });
 
     modal[0].classList.add("search-input__modal--show");
@@ -151,8 +144,39 @@ if (input.length > 0) {
   };
 }
 
-document.addEventListener("keypress", (event) => {
-  if (event.code === "KeyD") {
+function insertFoundPosition(elem) {
+  const text = elem.srcElement.textContent;
+  insertPosition({ name: text });
+
+  const modal = document.getElementsByClassName("search-input__modal");
+  const input = document.getElementsByClassName("search-input__input");
+  
+  input[0].value = "";
+  modal[0].classList.remove("search-input__modal--show");
+  modal[0].innerHTML = "";
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.code === "KeyD" || event.code === "F8") {
     removePosition();
-  }
-});
+  } else if (event.code === "F2") {
+    alert("Открываем форму подбора товаров");
+  } else if (event.code === "F3") {
+    alert("Разукомплектация");
+  } else if (event.code === "F4") {
+    alert("Электронный чек");
+  } else if (event.code === "F5") {
+    alert("Количество");
+  } else if (event.code === "F6") {
+    alert("Возврат");
+  } else if (event.code === "F7") {
+    alert("Акции");
+  } else if (event.code === "F9") {
+    alert("Чек");
+  } else if (event.code === "F11") {
+    alert("Наличные");
+  } else if (event.code === "F12") {
+    alert("Сменить пользователя");
+  };
+  event.preventDefault();
+}, false);

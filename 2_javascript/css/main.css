@@ -199,16 +199,11 @@ body {
   margin-right: var(--margin-lg);
 }
 
-.summary-item {
-}
-
 .summary-item_label {
   text-transform: uppercase;
   margin-right: var(--margin-sm);
 }
 
-.summary-item_value {
-}
 
 /**
  * table-bonus
