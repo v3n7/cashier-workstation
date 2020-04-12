@@ -121,6 +121,15 @@ async function onSearch(text) {
       const li = document.createElement("li");
       li.innerText = item.name;
       ul.appendChild(li);
+
+      li.addEventListener("click", () => {
+        insertPosition({ name: li.textContent});
+
+        let input = document.getElementsByClassName("search-input__input");
+        input[0].value = "";
+        modal[0].classList.remove("search-input__modal--show");
+        modal[0].innerHTML = "";
+      });
     });
 
     modal[0].classList.add("search-input__modal--show");
