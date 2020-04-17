@@ -159,24 +159,33 @@ function insertFoundPosition(elem) {
 document.addEventListener("keydown", (event) => {
   if (event.code === "KeyD" || event.code === "F8") {
     removePosition();
+    event.preventDefault();
   } else if (event.code === "F2") {
     alert("Открываем форму подбора товаров");
+    event.preventDefault();
   } else if (event.code === "F3") {
     alert("Разукомплектация");
+    event.preventDefault();
   } else if (event.code === "F4") {
     alert("Электронный чек");
+    event.preventDefault();
   } else if (event.code === "F5") {
     alert("Количество");
+    event.preventDefault();
   } else if (event.code === "F6") {
     alert("Возврат");
+    event.preventDefault();
   } else if (event.code === "F7") {
     alert("Акции");
+    event.preventDefault();
   } else if (event.code === "F9") {
     alert("Чек");
+    event.preventDefault();
   } else if (event.code === "F11") {
     alert("Наличные");
+    event.preventDefault();
   } else if (event.code === "F12") {
     alert("Сменить пользователя");
+    event.preventDefault();
   };
-  event.preventDefault();
 }, false);
