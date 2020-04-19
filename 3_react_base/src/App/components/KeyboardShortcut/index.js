@@ -41,7 +41,6 @@ export default class KeyboardShortcut extends React.PureComponent {
   onKeyDown = (event) => {
     switch (event.keyCode) {
       case KEYCODE_ALT:
-        event.preventDefault();
       case KEYCODE_SHIFT:
       case KEYCODE_CTRL:
         const { pressed } = this.state;
@@ -50,8 +49,13 @@ export default class KeyboardShortcut extends React.PureComponent {
             pressed: { ...pressed, [event.keyCode]: true },
           });
         }
+        break;
       default:
         return;
+    }
+
+    if (event.keyCode === KEYCODE_ALT) {
+      event.preventDefault();
     }
   };
 
@@ -66,6 +70,7 @@ export default class KeyboardShortcut extends React.PureComponent {
             pressed: { ...state.pressed, [event.keyCode]: false },
           }));
         }
+        break;
       default:
         return;
     }
