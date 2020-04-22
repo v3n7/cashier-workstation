@@ -10,6 +10,7 @@ import SystemStatus from "./components/SystemStatus";
 import SumInfo from "./components/SumInfo";
 import Footer from "./components/Footer";
 import KeyboardShortcut from "./components/KeyboardShortcut";
+import Table from "./components/Table";
 
 import styles from "./App.module.css";
 
@@ -31,7 +32,9 @@ function App() {
         <HeaderUser />
       </Header>
       <main className={styles.main}>
-        <section className={styles.tableSection}></section>
+        <section className={styles.tableSection}>
+          <Table />
+        </section>
       </main>
       <Footer>
         <KeyboardShortcut />
