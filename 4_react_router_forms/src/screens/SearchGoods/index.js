@@ -7,6 +7,16 @@ export default class SearchGoods extends Component {
     history.push("/");
   };
 
+  onButtonClick = () => {
+    const searchElement = document.getElementsByClassName("searchGoods_input");
+    
+    localStorage.setItem("searchInput", searchElement[0].value);
+
+    const { history } = this.props;
+
+    history.push("/");
+  };
+
   render() {
     return (
       <div>
@@ -14,8 +24,11 @@ export default class SearchGoods extends Component {
           <div>
             <label>
               Поиск
-              <input type="text"></input>
-              <button>Обновить (F5)</button>
+              <input
+                type="text"
+                className="searchGoods_input"
+              />
+              <button onClick={ this.onButtonClick }>Поиск</button>
             </label>
           </div>
         </header>
