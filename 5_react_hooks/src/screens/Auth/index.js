@@ -1,10 +1,15 @@
 import React from "react";
 
+import { LoginContext } from "LoginProvider";
+
+import styles from "./Auth.module.css";
 export default class Auth extends React.Component {
   state = {
     login: "",
     password: "",
   };
+
+  static contextType = LoginContext;
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +18,7 @@ export default class Auth extends React.Component {
 
     const { login, password } = this.state;
     if (login === "demo" && password === "demo") {
-      localStorage.setItem("token", "token");
+      this.context.login("token", login);
       history.push("/");
     }
   };
@@ -26,9 +31,9 @@ export default class Auth extends React.Component {
     const { login, password } = this.state;
 
     return (
-      <div>
-        <form onSubmit={this.onSubmit}>
-          <div>
+      <div className={styles.container}>
+        <form className={styles.form} onSubmit={this.onSubmit}>
+          <div className={styles.item}>
             <label>
               <span>Login</span>
               <input
@@ -39,7 +44,7 @@ export default class Auth extends React.Component {
               />
             </label>
           </div>
-          <div>
+          <div className={styles.item}>
             <label>
               <span>Password</span>
               <input
@@ -50,8 +55,10 @@ export default class Auth extends React.Component {
               />
             </label>
           </div>
-          <div>
-            <button type="submit">Войти</button>
+          <div className={styles.item}>
+            <button type="submit" className={styles.button}>
+              Войти
+            </button>
           </div>
         </form>
       </div>
