@@ -11,16 +11,7 @@ import NotFound from "screens/NotFound";
 
 import LoginProvider, { LoginContext } from './LoginProvider'
 
-// function PrivateRoute(props) {
-//   //логика проверки аутентификации
-//   const token = localStorage.getItem("token");
-//   const isAuth = !!token;
-
-//   return isAuth ? <Route {...props} /> : <Redirect to="/login" />;
-// }
-
-function WithLogin(props) {
-
+function PrivateRoute(props) {
   return <LoginContext.Consumer>
     {({ isAuth }) => {
       return isAuth ? <Route {...props} /> : <Redirect to="/login" />
@@ -32,8 +23,8 @@ function App() {
   return (
     <Container>
       <Switch>
-        <WithLogin exact path="/" component={Main} />
-        <WithLogin path="/search" component={SearchGoods} />
+        <PrivateRoute exact path="/" component={Main} />
+        <PrivateRoute path="/search" component={SearchGoods} />
         <Route path="/login" component={Auth} />
         <Route path="*" component={NotFound} />
       </Switch>
