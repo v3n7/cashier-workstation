@@ -5,6 +5,7 @@ import { LoginContext } from "LoginProvider";
 import styles from "./HeaderUser.module.css";
 
 import EditUserModal from "../EditUserModal";
+import PortalModal from "shared/components/PortalModal";
 
 export default function HeaderUser() {
   const [show, setShow] = React.useState(false);
@@ -20,11 +21,13 @@ export default function HeaderUser() {
       </div>
       <div className={styles.bonuses}>Кошелек: 0.00</div>
       {show && (
-        <EditUserModal
-          defaultUserName={context.userName}
-          onChange={context.onChangeUserName}
-          onClose={() => setShow(false)}
-        />
+        <PortalModal>
+          <EditUserModal
+            defaultUserName={context.userName}
+            onChange={context.onChangeUserName}
+            onClose={() => setShow(false)}
+          />
+        </PortalModal>
       )}
     </div>
   );
