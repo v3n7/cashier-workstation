@@ -1,6 +1,6 @@
 import React from "react";
 
-import Header from "./components/Header";
+import Header from "shared/components/Header";
 import HeaderUser from "./components/HeaderUser";
 import SearchInput from "./components/SearchInput";
 import SystemStatus from "./components/SystemStatus";
