@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import KeyboardShortcut from "./components/KeyboardShortcut";
 
 import styles from "./Main.module.css";
+import TableCheck from "./components/TableCheck";
 
 function Main() {
   return (
@@ -27,7 +28,9 @@ function Main() {
         <HeaderUser />
       </Header>
       <main className={styles.main}>
-        <section className={styles.tableSection}></section>
+        <section className={styles.tableSection}>
+          <TableCheck />
+        </section>
       </main>
       <Footer>
         <KeyboardShortcut />
