@@ -27,7 +27,7 @@ function Main() {
         <SystemStatus />
         <HeaderUser />
       </Header>
-      <main className={styles.main}>
+      <main className={styles.main} >
         <section className={styles.tableSection}>
           <TableCheck />
         </section>

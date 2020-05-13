@@ -1,11 +1,14 @@
 import React from "react";
 
+import useEventListener from '@use-it/event-listener';
+
 import { connect } from "react-redux";
-import { addPosition } from "redux/reducers/checkPositions";
+import { addPosition, delPosition } from "redux/reducers/checkPositions";
 
 import Table from "shared/components/Table";
 
 import styles from "./TableCheck.module.css";
+import tableStyles from "../../../../shared/components/Table/Table.module.css";
 
 const columns = [
   { dataIndex: "numPosition", title: "" },
@@ -21,7 +24,21 @@ const columns = [
   { dataIndex: "discount", title: "Дисконт" },
 ];
 
-function TableCheck({ data = [], addPosition }) {
+function TableCheck({ data = [], addPosition, delPosition }) {
+  const [selectedRow, setSelectedRow] = React.useState();
+
+  const onClick = (event) => {
+    event.preventDefault();
+
+    if (!!selectedRow) {
+      selectedRow.removeAttribute("class");
+    }
+
+    event.currentTarget.setAttribute("class", tableStyles.selected);
+
+    setSelectedRow(event.currentTarget);
+  };
+
   React.useEffect(() => {
     const timer = setTimeout(() => {
       addPosition({
@@ -40,7 +57,22 @@ function TableCheck({ data = [], addPosition }) {
     return () => clearTimeout(timer);
   }, [addPosition]);
 
-  return <Table columns={columns} data={data} className={styles.table} />;
+  useEventListener("keydown", (event) => {
+    if (event.key === "F8") {
+      event.preventDefault();
+
+      delPosition({ selectedRow });
+    }
+  });
+
+  return (
+    <Table
+      columns={columns}
+      data={data}
+      className={styles.table}
+      onClick={onClick}
+    />
+  );
 }
 
 // const mapDispatchToProps = (dispatch) => ({
@@ -50,5 +82,5 @@ export default connect(
   (state) => ({
     data: state.checkPositions,
   }),
-  { addPosition }
+  { addPosition, delPosition }
 )(TableCheck);

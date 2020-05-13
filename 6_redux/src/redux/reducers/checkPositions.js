@@ -6,6 +6,14 @@ export function addPosition(item) {
   };
 }
 
+const DEL_POSITION = "DEL_POSITION";
+export function delPosition(item) {
+  return {
+    type: DEL_POSITION,
+    item
+  };
+}
+
 const initPositions = [
   {
     numPosition: 1,
@@ -26,6 +34,10 @@ export default (prevState = initPositions, action) => {
     case ADD_POSITION:
       const numPosition = prevState.length + 1;
       return [...prevState, { ...action.item, numPosition }];
+    case DEL_POSITION:
+      const index = Number.parseInt(action.item.selectedRow.children[0].children[0].innerHTML) - 1;
+      prevState.splice(index, 1);
+      return prevState;
     default:
       return prevState;
   }
