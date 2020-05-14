@@ -35,9 +35,16 @@ export default (prevState = initPositions, action) => {
       const numPosition = prevState.length + 1;
       return [...prevState, { ...action.item, numPosition }];
     case DEL_POSITION:
-      const index = Number.parseInt(action.item.selectedRow.children[0].children[0].innerHTML) - 1;
-      prevState.splice(index, 1);
-      return prevState;
+      const delIndex = Number.parseInt(action.item.selectedRow.children[0].children[0].innerHTML) - 1;
+      
+      prevState.splice(delIndex, 1);
+
+      for (let index = 0; index < prevState.length; index++) {
+        const element = prevState[index];
+        element.numPosition = index + 1;
+      }
+
+      return [ ...prevState ];
     default:
       return prevState;
   }
