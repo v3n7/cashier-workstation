@@ -1,4 +1,6 @@
 const express = require("express");
+const jsend = require("jsend")
+
 const routes = require('./routes')
 
 
@@ -12,8 +14,12 @@ class App {
   }
 
   run() {
+    this.app.use(express.json())
+    this.app.use(jsend.middleware)
     this.app.use(authMiddleware)
-    this.app.use(routes)
+
+    this.app.use('/api/v1/',routes)
+    
     this.app.use(errorMiddleware)
 
     this.app.listen(this._port, function () {

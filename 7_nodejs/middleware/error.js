@@ -16,8 +16,20 @@ const getErrorMessage = (code) => {
 };
 
 module.exports = (err, req, res, next) => {
-  if (err instanceof AuthError) {
-    return res.status(err.code).send(getErrorMessage(err.code));
+
+  console.info(err)
+  if (err) {
+    // if (process.env.NODE_ENV !== "production") {
+    //   return res.send(err);
+    // }
+
+    if (err instanceof AuthError) {
+      return res.jsend.error({
+        code: err.code,
+        message: getErrorMessage(err.code),
+      });
+    }
   }
-  res.status(500).send(getErrorMessage(500));
+
+  return res.jsend.error({ code: 500, message: getErrorMessage(500) })
 };
