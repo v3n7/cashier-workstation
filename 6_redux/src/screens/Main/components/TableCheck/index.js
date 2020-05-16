@@ -1,6 +1,6 @@
 import React from "react";
 
-import useEventListener from '@use-it/event-listener';
+import useEventListener from "@use-it/event-listener";
 
 import { connect } from "react-redux";
 import { addPosition, delPosition } from "redux/reducers/checkPositions";
@@ -24,20 +24,22 @@ const columns = [
   { dataIndex: "discount", title: "Дисконт" },
 ];
 
+function useKeyDown({ onDelete }) {
+  React.useEffect(() => {
+    const onKeyDown = (event) => {
+      if (event.code === "F8") {
+        event.preventDefault();
+        onDelete && onDelete();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [onDelete]);
+}
+
 function TableCheck({ data = [], addPosition, delPosition }) {
-  const [selectedRow, setSelectedRow] = React.useState();
-
-  const onClick = (event) => {
-    event.preventDefault();
-
-    if (!!selectedRow) {
-      selectedRow.removeAttribute("class");
-    }
-
-    event.currentTarget.setAttribute("class", tableStyles.selected);
-
-    setSelectedRow(event.currentTarget);
-  };
+  const selected = React.useRef();
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -57,12 +59,14 @@ function TableCheck({ data = [], addPosition, delPosition }) {
     return () => clearTimeout(timer);
   }, [addPosition]);
 
-  useEventListener("keydown", (event) => {
-    if (event.key === "F8") {
-      event.preventDefault();
+  const onSelectedRow = (index) => {
+    selected.current = index;
+  };
 
-      delPosition({ selectedRow });
-    }
+  useKeyDown({
+    onDelete: () => {
+      delPosition(selected.current);
+    },
   });
 
   return (
@@ -70,7 +74,7 @@ function TableCheck({ data = [], addPosition, delPosition }) {
       columns={columns}
       data={data}
       className={styles.table}
-      onClick={onClick}
+      onSelectedRow={onSelectedRow}
     />
   );
 }

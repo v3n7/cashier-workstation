@@ -7,10 +7,10 @@ export function addPosition(item) {
 }
 
 const DEL_POSITION = "DEL_POSITION";
-export function delPosition(item) {
+export function delPosition(index = null) {
   return {
     type: DEL_POSITION,
-    item
+    index,
   };
 }
 
@@ -35,16 +35,13 @@ export default (prevState = initPositions, action) => {
       const numPosition = prevState.length + 1;
       return [...prevState, { ...action.item, numPosition }];
     case DEL_POSITION:
-      const delIndex = Number.parseInt(action.item.selectedRow.children[0].children[0].innerHTML) - 1;
-      
-      prevState.splice(delIndex, 1);
-
-      for (let index = 0; index < prevState.length; index++) {
-        const element = prevState[index];
-        element.numPosition = index + 1;
+      if (action.index >= 0 && action.index < prevState.length) {
+        return prevState
+          .filter((_, index) => index !== action.index)
+          .map((item, index) => ({ ...item, numPosition: index + 1 }));
+      } else {
+        return prevState;
       }
-
-      return [ ...prevState ];
     default:
       return prevState;
   }
