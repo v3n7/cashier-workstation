@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "998cf8e7-1fe2-4a57-929b-be4c24bd0041",
+		"name": "Node.js",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Goods",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/goods",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"goods"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/check?data=[{\"number\": 17, \"bonus\": 0.00, \"name\": \"Шпайк/speick крем д/бритья актив 75г\", \"place\": \"\", \"cost\": 307.00, \"unit\": \"1/1\", \"quantity\": 2.000, \"arrival_date\": \"01.01.2019\", \"store\": \"777 Робот\", \"set\": \"0671\", \"pku\": false, \"r\": false, \"shelf_life\": \"01.06.2021\", \"producer\": \"Вальтер Шопен\"}]",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"check"
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": "[{\"number\": 17, \"bonus\": 0.00, \"name\": \"Шпайк/speick крем д/бритья актив 75г\", \"place\": \"\", \"cost\": 307.00, \"unit\": \"1/1\", \"quantity\": 2.000, \"arrival_date\": \"01.01.2019\", \"store\": \"777 Робот\", \"set\": \"0671\", \"pku\": false, \"r\": false, \"shelf_life\": \"01.06.2021\", \"producer\": \"Вальтер Шопен\"}]"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
