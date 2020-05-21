@@ -1,5 +1,6 @@
 import React from "react";
 
+import { login } from 'api/auth'
 import { LoginContext } from "LoginProvider";
 
 import styles from "./Auth.module.css";
@@ -16,7 +17,12 @@ export default class Auth extends React.Component {
 
     const { history } = this.props;
 
-    const { login, password } = this.state;
+    const { login: username, password } = this.state;
+
+    login(username,password).then(response => {
+      
+    })
+
     if (login === "demo" && password === "demo") {
       this.context.login("token", login);
       history.push("/");

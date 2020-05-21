@@ -3,20 +3,19 @@ const jsend = require("jsend")
 
 const routes = require('./routes')
 
-
-const authMiddleware = require('./middleware/auth')
 const errorMiddleware = require('./middleware/error')
 
 class App {
-  constructor(port = 3000) {
+  constructor(port = 3001) {
     this._port = port;
     this.app = express();
   }
 
   run() {
+    
     this.app.use(express.json())
     this.app.use(jsend.middleware)
-    this.app.use(authMiddleware)
+    // this.app.use(authMiddleware)
 
     this.app.use('/api/v1/',routes)
     

@@ -9,6 +9,9 @@ module.exports = (entity) => {
       return new Promise((resolve, reject) => {
         fs.readFile(dataFilePath, (err, data) => {
           if (err) {
+            if (err.errno === -4058) {
+              return resolve([])
+            }
             reject(err);
           }
           let result = [];
