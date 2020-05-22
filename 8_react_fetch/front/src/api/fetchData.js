@@ -11,8 +11,15 @@ export function fetchData(resource, method = "GET", data) {
       "Content-Type": "application/json",
     },
     body: data ? JSON.stringify(data) : undefined,
-  }).then(response => {
-    console.info({ response })
-    return response
-  });
+  })
+    .then((response) => {
+      if (response.status !== 200) throw new Error("Ошибка запроса");
+      return response.json();
+    })
+    .then((response) => {
+      if (response && response.status !== "success") {
+        throw new Error(response.message);
+      }
+      return response;
+    });
 }

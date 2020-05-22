@@ -1,25 +1,33 @@
 import React from "react";
 
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 
 import Container from "shared/components/Container";
+import Notification from "shared/components/Notification";
 
 import Main from "screens/Main";
 import SearchGoods from "screens/SearchGoods";
 import Auth from "screens/Auth";
 import NotFound from "screens/NotFound";
 
-import LoginProvider, { LoginContext } from './LoginProvider'
+import LoginProvider from "./LoginProvider";
+import { useSelector } from "react-redux";
 
 function PrivateRoute(props) {
-  return <LoginContext.Consumer>
-    {({ isAuth }) => {
-      return isAuth ? <Route {...props} /> : <Redirect to="/login" />
-    }}
-  </LoginContext.Consumer>
+  const token = useSelector((state) => state.auth.token);
+  return token ? <Route {...props} /> : <Redirect to="/login" />;
 }
 
 function App() {
+
+  const history = useHistory()
+  const token = useSelector((state) => state.auth.token);
+  React.useEffect(()=> {
+    if (token) {
+      history.push("/")
+    }
+  },[token, history])
+
   return (
     <Container>
       <Switch>
@@ -28,6 +36,7 @@ function App() {
         <Route path="/login" component={Auth} />
         <Route path="*" component={NotFound} />
       </Switch>
+      <Notification />
     </Container>
   );
 }

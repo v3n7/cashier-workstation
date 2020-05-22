@@ -1,10 +1,13 @@
 import React from "react";
 
-import { login } from 'api/auth'
+import { connect } from "react-redux";
+
 import { LoginContext } from "LoginProvider";
 
+import { loginAction } from "../../redux/reducers/auth";
+
 import styles from "./Auth.module.css";
-export default class Auth extends React.Component {
+class Auth extends React.Component {
   state = {
     login: "",
     password: "",
@@ -14,19 +17,8 @@ export default class Auth extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-
-    const { history } = this.props;
-
-    const { login: username, password } = this.state;
-
-    login(username,password).then(response => {
-      
-    })
-
-    if (login === "demo" && password === "demo") {
-      this.context.login("token", login);
-      history.push("/");
-    }
+    const { login, password } = this.state;
+    this.props.loginAction(login, password);
   };
 
   onChange = (name) => (e) => {
@@ -71,3 +63,5 @@ export default class Auth extends React.Component {
     );
   }
 }
+
+export default connect(null, { loginAction })(Auth);
