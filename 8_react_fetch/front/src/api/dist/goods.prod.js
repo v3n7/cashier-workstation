@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getData=getData;var _fetchData=_interopRequireDefault(require("./fetchData"));function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}function getData(e){return(0,_fetchData.default)("/goods","GET",e)}

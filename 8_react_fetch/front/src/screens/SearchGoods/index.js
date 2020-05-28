@@ -1,16 +1,22 @@
 import React from "react";
 
+import { connect } from "react-redux";
+
 import Header from "shared/components/Header";
 import IconButton from "shared/components/buttons/IconButton";
 import { CloseIcon } from "shared/icons";
 
+import { getDataAction } from "../../redux/reducers/goods";
+
 import styles from "./SearchGoods.module.css";
-export default class SearchGoods extends React.Component {
+
+class SearchGoods extends React.Component {
   constructor(props) {
     super(props);
     const search = new URLSearchParams(this.props.location.search);
     this.state = {
       value: search.get("value"),
+      data: [],
     };
   }
 
@@ -25,7 +31,15 @@ export default class SearchGoods extends React.Component {
     history.push(`/search?value=${this.state.value}`);
   };
 
+  componentWillMount() {
+    this.setState((state, props) => {
+      return { data: this.props.getDataAction(this.state.value) };
+    });
+  }
+
   render() {
+    console.log('this.state', this.state)
+
     return (
       <>
         <Header>
@@ -47,11 +61,11 @@ export default class SearchGoods extends React.Component {
           </div>
         </Header>
         <main className={styles.main}>
-          <section className={styles.tableSection}>
-            
-          </section>
+          <section className={styles.tableSection}></section>
         </main>
       </>
     );
   }
 }
+
+export default connect(null, { getDataAction })(SearchGoods);
