@@ -1,7 +1,10 @@
 "use strict";
 
+// const uuid = require("uuid/v4");
+
 const insertData = [
   {
+    uid: "FC307125-513E-40BB-894B-965CFAE53C60",
     bonus: 0.0,
     name: "Но-шпа р-р в/в и в/м 20мг/мл 2мл №5",
     place: "",
@@ -17,6 +20,7 @@ const insertData = [
     producer: "Хиноин ЗАО",
   },
   {
+    uid: "FC307125-513E-40BB-894B-965CFAE53C61",
     bonus: 0.0,
     name: "Но-шпа р-р в/в и в/м 20мг/мл 2мл №5",
     place: "",
@@ -32,6 +36,7 @@ const insertData = [
     producer: "Хиноин ЗАО",
   },
   {
+    uid: "FC307125-513E-40BB-894B-965CFAE53C62",
     bonus: 0.0,
     name: "Но-шпа таб. 40мг №100",
     place: "154",
@@ -47,6 +52,7 @@ const insertData = [
     producer: "Хиноин ЗАО",
   },
   {
+    uid: "FC307125-513E-40BB-894B-965CFAE53C63",
     bonus: 0.0,
     name: "Но-шпа таб. 40мг №100",
     place: "154",
@@ -62,6 +68,7 @@ const insertData = [
     producer: "Хиноин ЗАО",
   },
   {
+    uid: "FC307125-513E-40BB-894B-965CFAE53C64",
     bonus: 0.0,
     name: "Но-шпа таб. 40мг №100",
     place: "154",
@@ -77,6 +84,7 @@ const insertData = [
     producer: "Хиноин ЗАО",
   },
   {
+    uid: "FC307125-513E-40BB-894B-965CFAE53C65",
     bonus: 0.0,
     name: "Но-шпа таб. 40мг №24",
     place: "154",
@@ -92,6 +100,7 @@ const insertData = [
     producer: "Хиноин ЗАО",
   },
   {
+    uid: "FC307125-513E-40BB-894B-965CFAE53C66",
     bonus: 0.0,
     name: "Но-шпа таб. 40мг №24",
     place: "154",
@@ -107,6 +116,7 @@ const insertData = [
     producer: "Хиноин ЗАО",
   },
   {
+    uid: "FC307125-513E-40BB-894B-965CFAE53C67",
     bonus: 0.0,
     name: "Но-шпа таб. 40мг №24",
     place: "154",
@@ -120,7 +130,7 @@ const insertData = [
     r: false,
     shelfLife: "30.09.2022",
     producer: "Хиноин ЗАО",
-  },
+  }/*,
   {
     bonus: 0.0,
     name: "Но-шпа таб. 40мг №24",
@@ -255,9 +265,12 @@ const insertData = [
     r: false,
     shelfLife: "01.06.2021",
     producer: "Вальтер Шопен",
-  },
+  },*/
 ].map((item) => ({
   ...item,
+  // uid: uuid(),
+  createdAt: new Date(),
+  updatedAt: new Date(),
   arrivalDate: (new Date()),
   shelfLife: (new Date()),
 }));

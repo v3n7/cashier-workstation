@@ -1,7 +1,5 @@
 "use strict";
 
-const uuid = require("uuid/v4");
-
 module.exports = (sequelize, DataTypes) => {
   const Goods = sequelize.define(
     "Goods",
@@ -19,23 +17,13 @@ module.exports = (sequelize, DataTypes) => {
       quantity: DataTypes.FLOAT,
       arrivalDate: DataTypes.DATE,
       store: DataTypes.STRING,
-      set: DataTypes.STRING,
+      lot: DataTypes.STRING,
       pku: DataTypes.BOOLEAN,
       r: DataTypes.BOOLEAN,
       shelfLife: DataTypes.DATE,
       producer: DataTypes.STRING,
-    },
-    {
-      hooks: {
-        beforeBulkCreate: (goods) => {
-          return goods.map((item) => (item.uid = uuid()))
-        }
-      }
     }
   );
-
-  Goods.beforeBulkCreate((goods) => goods.map((item) => (item.uid = uuid())));
-  Goods.beforeCreate((goods) => (goods.uid = uuid()));
 
   Goods.associate = function (models) {
     // associations can be defined here

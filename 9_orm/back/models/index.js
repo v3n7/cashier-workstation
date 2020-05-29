@@ -10,7 +10,7 @@ const Config = require("../config");
 const db = {};
 
 const sequelize = new Sequelize(Config.DB_CONNECTION_STRING, {
-  freezeTableName: true,
+  define: { freezeTableName: true },
 });
 
 fs.readdirSync(__dirname)
