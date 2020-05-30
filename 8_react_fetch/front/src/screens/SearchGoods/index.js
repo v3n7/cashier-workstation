@@ -6,9 +6,11 @@ import Header from "shared/components/Header";
 import IconButton from "shared/components/buttons/IconButton";
 import { CloseIcon } from "shared/icons";
 
-import { getDataAction } from "../../redux/reducers/goods";
+import goods, { getDataAction } from "../../redux/reducers/goods";
 
 import styles from "./SearchGoods.module.css";
+import Table from "shared/components/Table";
+import tableStyles from "shared/components/Table/Table.module.css";
 
 class SearchGoods extends React.Component {
   constructor(props) {
@@ -16,8 +18,8 @@ class SearchGoods extends React.Component {
     const search = new URLSearchParams(this.props.location.search);
     this.state = {
       value: search.get("value"),
-      data: [],
     };
+    this.props.getDataAction(this.state.value);
   }
 
   goBack = (e) => {
@@ -31,14 +33,32 @@ class SearchGoods extends React.Component {
     history.push(`/search?value=${this.state.value}`);
   };
 
-  componentWillMount() {
-    this.setState((state, props) => {
-      return { data: this.props.getDataAction(this.state.value) };
-    });
+  componentDidMount() {
+    const search = new URLSearchParams(this.props.location.search);
+    const value = search.get("value");
+
+    if (this.state.value !== value) {
+      this.setState({ value });
+    }
   }
 
   render() {
-    console.log('this.state', this.state)
+    let columns = [
+      "number",
+      "bonus",
+      "name",
+      "place",
+      "cost",
+      "unit",
+      "quantity",
+      "arrival_date",
+      "store",
+      "set",
+      "pku",
+      "r",
+      "shelf_life",
+      "producer",
+    ];
 
     return (
       <>
@@ -61,11 +81,22 @@ class SearchGoods extends React.Component {
           </div>
         </Header>
         <main className={styles.main}>
-          <section className={styles.tableSection}></section>
+          <section className={styles.tableSection}>
+            <Table
+              className={tableStyles.table}
+              columns={ columns }
+              data={this.props.goods}
+            />
+          </section>
         </main>
       </>
     );
   }
 }
 
-export default connect(null, { getDataAction })(SearchGoods);
+export default connect(
+  (state) => {
+    return { goods: state.goods };
+  },
+  { getDataAction }
+)(SearchGoods);
