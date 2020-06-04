@@ -6,22 +6,23 @@ const { AuthError } = require("../errors");
 const async = require("../middleware/asyncRequest");
 
 const router = require("express").Router();
-const db = require("../db")("user");
+const User = require("../models").User;
 
 //login
 router.post(
   "/login",
   async(async (req, res) => {
     const { username, password } = req.body;
-    const users = await db.readData();
-    const usersForCheck = users.filter((user) => user.username === username);
-    const user = usersForCheck.find((user) =>
-      bcrypt.compareSync(password, user.password)
-    );
 
-    if (!user) throw new AuthError("Неверные логин или пароль", 401);
+    const userCheck = await User.findOne({ where: { username } });
+    if (!userCheck || !bcrypt.compareSync(password, userCheck.password)) {
+      throw new AuthError("Неверные логин или пароль", 401);
+    }
 
-    delete user.password;
+    const user = await User.findOne({
+      attributes: { exclude: ["password"] },
+      where: { id: userCheck.id },
+    });
 
     return res.jsend.success({
       user,

@@ -7,6 +7,20 @@ module.exports = (sequelize, DataTypes) => {
       sum: DataTypes.DECIMAL(20, 2),
       price: DataTypes.DECIMAL(20, 2),
       quantity: DataTypes.FLOAT,
+      checkId: {
+        type: DataTypes.INTEGER,
+      },
+      goodsUid: {
+        type: DataTypes.UUID,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
     },
     {}
   );

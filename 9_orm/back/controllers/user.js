@@ -1,39 +1,43 @@
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-const withAuth = require('../middleware/auth')
+const yup = require("yup");
 
 const router = require("express").Router();
-const db = require("../db")("user");
+const User = require("../models").User;
+const async = require("../middleware/asyncRequest");
 
-router.get("/findAll", async (req, res) => {
-  return db.readData().then(res.jsend.success).catch(next);
+router.get("/findAll", (req, res, next) => {
+  User.findAll({ attributes: { exclude: ["password"] } })
+    .then(res.jsend.success)
+    .catch(next);
+});
+
+const userSchema = yup.object().shape({
+  username: yup.string().required(),
+  password: yup.string().min(6).required(),
+  address: yup.string(),
 });
 
 //user create
-router.post("/", async (req, res, next) => {
-  const users = await db.readData();
-  const maxIdUser = users.reduce((previousValue, currentValue) => {
-    return Math.max(previousValue, currentValue.id);
-  }, 0);
+router.post(
+  "/",
+  async(async (req, res) => {
+    const newUser = await userSchema.validate(req.body);
 
-  const salt = bcrypt.genSaltSync(saltRounds);
-  const hash = bcrypt.hashSync(req.body.password, salt);
+    const salt = bcrypt.genSaltSync(saltRounds);
+    newUser.password = bcrypt.hashSync(req.newUser.password, salt);
 
-  const userData = {
-    id: maxIdUser + 1,
-    username: req.body.username || "",
-    password: hash,
-    address: req.body.address || "",
-  };
+    const user = await User.create(newUser);
 
-  return db
-    .addData(userData)
-    .then(() => {
-      res.jsend.success(true);
-    })
-    .catch(next);
-});
+    res.jsend.success(
+      await User.findOne({
+        attributes: { exclude: ["password"] },
+        where: { id: user.id },
+      })
+    );
+  })
+);
 
 //user update
 // router.put("/{:id}", (req, res) => {});
