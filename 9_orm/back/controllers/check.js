@@ -8,7 +8,7 @@ const CheckService = require("../core/CheckService");
 
 //создать новый чек
 router.post("/", (req, res, next) => {
-  return new CheckService(res.user).createCheck().then(res.jsend.success).catch(next);
+  return new CheckService(req.user).createCheck().then(res.jsend.success).catch(next);
 });
 
 router.get("/:checkId(\\d+)", (req, res, next) => {
