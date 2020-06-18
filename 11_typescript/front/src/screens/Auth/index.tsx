@@ -2,8 +2,6 @@ import React from "react";
 
 import { connect } from "react-redux";
 
-import { LoginContext } from "LoginProvider";
-
 import { loginAction } from "reduxStore/reducers/auth";
 
 import styles from "./Auth.module.css";
@@ -22,8 +20,6 @@ class Auth extends React.Component<AuthProps, AuthState> {
     login: "",
     password: "",
   };
-
-  static contextType = LoginContext;
 
   onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

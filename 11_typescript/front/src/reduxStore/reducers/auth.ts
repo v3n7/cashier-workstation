@@ -11,6 +11,16 @@ export const loginFetch = (login: string, password: string) => ({
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 // const LOGIN_ERROR = "LOGIN_ERROR";
 const LOGOUT = "LOGOUT";
+export const logoutAction = (): ReduxThunkAction => (dispath) => {
+  UserStorage.clear();
+  dispath({ type: LOGOUT });
+};
+
+const SET_USERNAME = "SET_USERNAME";
+export const setUsernameAction = (name: string) => ({
+  type: SET_USERNAME,
+  payload: name,
+});
 
 export const loginAction = (
   login: string,
@@ -52,6 +62,8 @@ export default (state: AuthState = initialState(), action: any): AuthState => {
       return { userName, token };
     case LOGOUT:
       return { userName: "", token: "" };
+    case SET_USERNAME:
+      return { ...state, userName: action.payload };
     default:
       return state;
   }

@@ -8,6 +8,10 @@ export class UserStorage {
     };
   }
 
+  static clear() {
+    localStorage.removeItem("user");
+  }
+
   static save(userName, token) {
     localStorage.setItem("user", JSON.stringify({ userName, token }));
   }

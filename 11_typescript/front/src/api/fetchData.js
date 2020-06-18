@@ -1,4 +1,4 @@
-import { UserStorage } from "../reduxStore/reducers/node_modules/storage";
+import { UserStorage } from "storage";
 
 const API_URL = "http://localhost:3001/api/v1";
 
