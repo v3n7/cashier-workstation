@@ -2,7 +2,13 @@ import React from "react";
 
 import styles from "./SumInfo.module.css";
 
-export default function SumInfo({ label, value, attention }) {
+type SumInfoProps = {
+  label: string;
+  value: string;
+  attention: boolean;
+}
+
+export default function SumInfo({SumInfoProps}) {
   return (
     <div
       className={[styles.container, attention ? styles.attention : ""].join(" ")}

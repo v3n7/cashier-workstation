@@ -27,7 +27,7 @@ export default class LoginProvider extends Component {
 
   startCheckValidToken = () => {
     if (this.state.isAuth) {
-      let count = 0;
+      let count: number = 0;
       this.timer = setInterval(() => {
         //запрос на проверку живого токена
         // console.info("count = ", count);

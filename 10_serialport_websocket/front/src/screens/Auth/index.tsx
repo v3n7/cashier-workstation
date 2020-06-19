@@ -7,7 +7,17 @@ import { LoginContext } from "LoginProvider";
 import { loginAction } from "../../redux/reducers/auth";
 
 import styles from "./Auth.module.css";
-class Auth extends React.Component {
+
+type AuthProps = {
+  loginAction: (login: string, password: string) => void;
+}
+
+type AuthState = {
+  login: string;
+  password: string;
+}
+
+class Auth extends React.Component<AuthProps, AuthState> {
   state = {
     login: "",
     password: "",
@@ -15,14 +25,15 @@ class Auth extends React.Component {
 
   static contextType = LoginContext;
 
-  onSubmit = (e) => {
+  onSubmit = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
     const { login, password } = this.state;
     this.props.loginAction(login, password);
   };
 
-  onChange = (name) => (e) => {
-    this.setState({ [name]: e.target.value });
+  onChange = (name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (name === "login") this.setState({ login: e.target.value });
+    if (name === "password") this.setState({ password: e.target.value });
   };
 
   render() {
