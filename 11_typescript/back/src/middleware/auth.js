@@ -4,7 +4,7 @@ const ExtractJwt = require("passport-jwt").ExtractJwt;
 const { AuthError } = require("../errors");
 const Config = require("../config");
 
-const User = require("../models").User;
+const User = require("../models").default.User;
 
 passport.use(
   new JwtStrategy(

@@ -1,12 +1,14 @@
-const express = require("express");
-const jsend = require("jsend");
-const cors = require("cors");
+import express, { Express } from "express";
+import jsend from "jsend";
+import cors from "cors";
 
-const routes = require("./routes");
+import routes from "./routes";
 
-const errorMiddleware = require("./middleware/error");
+import errorMiddleware from "./middleware/error";
 
 class App {
+  private _port: number;
+  private app: Express;
   constructor(port = 3001) {
     this._port = port;
     this.app = express();
@@ -38,4 +40,4 @@ if (!module.parent) {
   app.run();
 }
 
-module.exports = App;
+export default App;

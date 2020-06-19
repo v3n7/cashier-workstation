@@ -1,7 +1,7 @@
 const async = require("../middleware/asyncRequest");
 
 const router = require("express").Router();
-const models = require("../models");
+const models = require("../models").default;
 const Constants = require("../constants");
 const CheckService = require("../core/CheckService");
 const GoodsService = require("../core/GoodsService");

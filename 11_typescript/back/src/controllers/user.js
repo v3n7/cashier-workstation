@@ -4,7 +4,7 @@ const saltRounds = 10;
 const yup = require("yup");
 
 const router = require("express").Router();
-const User = require("../models").User;
+const User = require("../models").default.User;
 const async = require("../middleware/asyncRequest");
 
 router.get("/findAll", (req, res, next) => {

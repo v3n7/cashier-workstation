@@ -1,12 +1,15 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
-const Config = require("../config");
-const { AuthError } = require("../errors");
-const async = require("../middleware/asyncRequest");
+import Config from "../config";
+import { AuthError } from "../errors";
 
-const router = require("express").Router();
-const User = require("../models").User;
+import { async } from "../middleware";
+
+import { Router } from "express";
+import { User } from "../models";
+
+const router = Router();
 
 //login
 router.post(
@@ -21,14 +24,14 @@ router.post(
 
     const user = await User.findOne({
       attributes: { exclude: ["password"] },
-      where: { id: userCheck.id },
+      where: { id: userCheck.id! },
     });
 
     return res.jsend.success({
       user,
-      token: jwt.sign({ id: user.id }, Config.SECRET),
+      token: jwt.sign({ id: userCheck.id }, Config.SECRET),
     });
   })
 );
 
-module.exports = router;
+export default router;
