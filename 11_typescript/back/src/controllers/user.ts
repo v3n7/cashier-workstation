@@ -1,13 +1,17 @@
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
+import { IUser } from "../models/User";
+import bcrypt from "bcrypt";
+import yup from "yup";
+import { Request, Response, NextFunction } from "express";
 
-const yup = require("yup");
+const saltRounds = 10;
 
 const router = require("express").Router();
 const User = require("../models").default.User;
-const async = require("../middleware/asyncRequest");
+import async from "../middleware/asyncRequest";
+import { type } from "os";
+import { any } from "sequelize/types/lib/operators";
 
-router.get("/findAll", (req, res, next) => {
+router.get("/findAll", (req: Request, res: Response, next: NextFunction) => {
   User.findAll({ attributes: { exclude: ["password"] } })
     .then(res.jsend.success)
     .catch(next);
@@ -19,14 +23,22 @@ const userSchema = yup.object().shape({
   address: yup.string(),
 });
 
+export interface IUserRequest extends Request {
+  newUser: {
+    username: string;
+    password: string;
+    address: string;
+  }
+}
+
 //user create
 router.post(
   "/",
-  async(async (req, res) => {
+  async(async (req: Request, res: Response) => {
     const newUser = await userSchema.validate(req.body);
 
     const salt = bcrypt.genSaltSync(saltRounds);
-    newUser.password = bcrypt.hashSync(req.newUser.password, salt);
+    newUser!.password = bcrypt.hashSync(req.newUser.password, salt);
 
     const user = await User.create(newUser);
 
@@ -42,4 +54,4 @@ router.post(
 //user update
 // router.put("/{:id}", (req, res) => {});
 
-module.exports = router;
+export default router;

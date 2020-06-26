@@ -3,7 +3,7 @@ import { Router } from "express";
 // import withAuth from "./middleware/auth";
 
 import auth from "./controllers/auth";
-// import user from "./controllers/user";
+import user from "./controllers/user";
 // import goods from "./controllers/goods";
 // import check from "./controllers/check";
 // import checkPosition from "./controllers/checkPosition";
@@ -11,7 +11,7 @@ import auth from "./controllers/auth";
 const router = Router();
 
 router.use("/auth", auth);
-// router.use("/user", withAuth, user);
+//router.use("/user"/* , withAuth */, user);
 // router.use("/goods", withAuth, goods);
 // router.use("/check", withAuth, check);
 // router.use("/checkPosition", withAuth, checkPosition);

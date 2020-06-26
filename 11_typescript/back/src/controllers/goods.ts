@@ -1,10 +1,11 @@
+import { Request, Response } from 'express';
 // const async = require("../middleware/asyncRequest");
 
 const router = require("express").Router();
 const models = require("../models").default;
 
-const async = require("../middleware/asyncRequest");
-const yup = require("yup");
+import async from "../middleware/asyncRequest";
+import yup from "yup";
 
 const searchParamSchema = yup.object().shape({
   barcode: yup.number(),
@@ -13,7 +14,7 @@ const searchParamSchema = yup.object().shape({
 
 router.get(
   "/findAll",
-  async(async (req, res) => {
+  async(async (req: Request, res: Response) => {
     const searchParam = await searchParamSchema.validate(req.query);
     const data = await models.Goods.findAll({ where: searchParam });
     return res.jsend.success(data);

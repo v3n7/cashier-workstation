@@ -1,6 +1,6 @@
-"use strict";
+import { DataTypes, Sequelize, Model, BuildOptions } from "sequelize";
 
-module.exports = (sequelize, DataTypes) => {
+export const GoodsFactory = (sequelize: Sequelize) => {
   const Goods = sequelize.define("Goods", {
     uid: {
       allowNull: false,
@@ -20,9 +20,10 @@ module.exports = (sequelize, DataTypes) => {
     r: DataTypes.BOOLEAN,
     shelfLife: DataTypes.DATE,
     producer: DataTypes.STRING,
-    barcode: DataTypes.NUMERIC,
+    barcode: DataTypes.NUMBER, // NUMERIC
   });
 
+  //@ts-ignore
   Goods.associate = function (models) {
     // associations can be defined here
   };

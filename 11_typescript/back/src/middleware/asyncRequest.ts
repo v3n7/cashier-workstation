@@ -1,3 +1,4 @@
+import { IUserRequest } from './../controllers/user';
 import { Request, Response, NextFunction } from "express";
 
 type AsyncRequest = (
@@ -6,7 +7,7 @@ type AsyncRequest = (
   next: NextFunction
 ) => Promise<any>;
 
-export function async(fn: AsyncRequest) {
+export default function async(fn: AsyncRequest) {
   return (req: Request, res: Response, next: NextFunction) => {
     return Promise.resolve(fn(req, res, next)).catch(next);
   };
